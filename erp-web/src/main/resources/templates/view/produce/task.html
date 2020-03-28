@@ -1,0 +1,196 @@
+<#include "/view/layout/head.html">
+
+<div id="app" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <div class="form-group col-sm-2">
+                <input type="text" class="form-control" v-model="query.taskCode" @keyup.enter="query" >
+            </div>
+            <a id="query" class="btn btn-default" @click="query">查询</a>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <a class="btn btn-primary" @click="submit"><i class="fa fa-check"></i>&nbsp;提交</a>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-times"></i>&nbsp;删除</a>
+            <a class="btn btn-primary" @click="importTask"><i class="fa fa-share"></i>&nbsp;生成任务单</a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-edit">
+            <!-- 工程ID-->
+            <input type="hidden" v-model="task.projectId"/>
+            <table>
+                <tr>
+                    <th class="xrequired">任务单号：</th>
+                    <td><input type="text" style="width:150px" v-model="task.taskCode" readOnly=true/></td>
+                    <th>工程编号：</th>
+                    <td>
+                        <input type="text" style="width:130px" v-model="task.projectCode" readOnly=true />
+                        <a class="fa fa-search " style="cursor: pointer;text-decoration:none;" @click="selectProject"></a>
+                    </td>
+                    <th class="required">工程名称：</th>
+                    <td colspan="3"><input type="text" style="width:420px" v-model="task.projectName" readOnly=true /></td>
+                </tr>
+                <tr>
+                    <th>合同编号：</th>
+                    <td>
+                        <input type="text" style="width:150px" v-model="task.contractCode" readOnly=true />
+                    </td>
+                    <th class="required">站别：</th>
+                    <td>
+                        <input type="text" style="width:150px" v-model="task.stationName" readOnly=true />
+                    </td>
+                    <th class="xrequired">施工单位：</th>
+                    <td colspan="3"><input type="text" style="width:420px" v-model="task.constructionUnit" readOnly=true/></td>
+                </tr>
+                <tr>
+                    <th>供货日期：</th>
+                    <td><input type="date" style="width:150px" v-model="task.deliveryDate" readOnly=true /></td>
+                    <th>浇筑方式：</th>
+                    <td>
+                        <select style="width:150px" v-model="task.pourMethod" disabled="disabled" >
+                            <option value="">---请选择---</option>
+                            <option value="0">浇筑方式1</option>
+                            <option value="1">浇筑方式2</option>
+                        </select>
+                    </td>
+                    <th class="required">浇筑部位：</th>
+                    <td colspan="3"><input type="text" style="width:420px" v-model="task.pourPart" readOnly=true/></td>
+                </tr>
+
+                <tr>
+                    <th>计划数量：</th>
+                    <td><input type="text" style="width:150px" v-model="task.planQuantity" readOnly=true /></td>
+                    <th>强度等级C：</th>
+                    <td>
+                        <select style="width:150px" v-model="task.intensityLevel" disabled="disabled" >
+                            <option value="">---请选择---</option>
+                            <option value="C15">C15</option>
+                            <option value="C20">C20</option>
+                            <option value="C25">C25</option>
+                            <option value="C30">C30</option>
+                            <option value="C35">C35</option>
+                            <option value="C40">C40</option>
+                            <option value="C45">C45</option>
+                            <option value="C50">C50</option>
+                            <option value="C55">C55</option>
+                            <option value="C60">C60</option>
+                        </select>
+                    </td>
+                    <th class="xrequired">核算单位：</th>
+                    <td colspan="3"><input type="text" style="width:420px" v-model="task.accountingUnit" readOnly=true/></td>
+                </tr>
+                <tr>
+                    <th>抗渗等级P：</th>
+                    <td>
+                        <select style="width:150px" v-model="task.impermeabilityLevel" disabled="disabled" >
+                            <option value="">---请选择---</option>
+                            <option value="P4">P4</option>
+                            <option value="P6">P6</option>
+                            <option value="P8">P8</option>
+                            <option value="P10">P10</option>
+                            <option value="P12">P12</option>
+                        </select>
+                    </td>
+                    <th>抗冻等级F：</th>
+                    <td>
+                        <select style="width:150px" v-model="task.frostResistanceLevel" disabled="disabled" >
+                            <option value="">---请选择---</option>
+                            <option value="F100">F100</option>
+                            <option value="F150">F150</option>
+                            <option value="F200">F200</option>
+                            <option value="F250">F250</option>
+                            <option value="F300">F300</option>
+                            <option value="F350">F350</option>
+                            <option value="F400">F400</option>
+                        </select>
+                    </td>
+                    <th>抗折等级Z：</th>
+                    <td>
+                        <select style="width:150px" v-model="task.bendLevel" disabled="disabled" >
+                            <option value="">---请选择---</option>
+                            <option value="Z100">Z100</option>
+                            <option value="Z101">Z101</option>
+                            <option value="Z102">Z102</option>
+                        </select>
+                    </td>
+                    <th>防腐等级P：</th>
+                    <td>
+                        <select style="width:150px" v-model="task.anticorrosiveLevel" disabled="disabled" >
+                            <option value="">---请选择---</option>
+                            <option value="F1001">F1001</option>
+                            <option value="F1002">F1002</option>
+                            <option value="F1003">F1003</option>
+                            <option value="F1004">F1004</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <th>坍落度：</th>
+                    <td><input type="text" style="width:150px" v-model="task.slump" readOnly=true /></td>
+                    <th>运输距离：</th>
+                    <td><input type="text" style="width:150px" v-model="task.transportDistance" readOnly=true /></td>
+                    <th>客户名称：</th>
+                    <td colspan="3"><input type="text" style="width:420px" v-model="task.customerName" readOnly=true /></td>
+                </tr>
+                <tr>
+                    <th>计划日期：</th>
+                    <td><input type="date" style="width:150px" v-model="task.planDate" readOnly=true /></td>
+                    <th>顺序号：</th>
+                    <td><input type="text" style="width:150px" v-model="task.orderId" /></td>
+                    <th style="width: 120px">工程核心信息：</th>
+                    <td colspan="3"><input type="text" v-model="task.projectCoreInfo" /></td>
+                </tr>
+                <tr>
+                    <th>超出数量：</th>
+                    <td><input type="text" style="width: 150px" v-model="task.outQuantity"/></td>
+                    <th>结束数量：</th>
+                    <td><input type="text" style="width:150px" v-model="task.endQuantity"/></td>
+                    <th>负责人：</th>
+                    <td>
+                        <select style="width:150px" v-model="task.employeeId" >
+                            <option value="">---请选择---</option>
+                            <option value="1">张三</option>
+                            <option value="2">李四</option>
+                            <option value="3">王二</option>
+                        </select>
+                    </td>
+                    <th style="width: 120px">送货地址电话：</th>
+                    <td><input type="text" style="width:150px" v-model="task.deliveryTelephone"/></td>
+                </tr>
+
+                <tr>
+                    <th>选择配比：</th>
+                    <td>
+                        <input type="text" style="width:130px" v-model="task.recipeId" readOnly=true />
+                        <a class="fa fa-search " style="cursor: pointer;text-decoration:none;" @click=""></a>
+                    </td>
+
+
+                </tr>
+
+            </table>
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="保存"/>
+                &nbsp;&nbsp;<input id="saveAndSubmit" type="button" class="btn btn-primary" @click="saveAndSubmit" value="保存并提交"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+
+
+
+        </form>
+    </div>
+
+</div>
+
+
+<script src="${request.contextPath}/js/modules/produce/task.js"></script>

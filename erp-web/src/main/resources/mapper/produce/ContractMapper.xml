@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.contract">
+    <resultMap id="BaseResultMap" type="com.tan.erp.web.produce.entity.ContractEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+        <result column="station_id" jdbcType="INTEGER" property="stationId" />
+        <result column="station_name" jdbcType="INTEGER" property="stationName" />
+        <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+        <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+        <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+        <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+        <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+        <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+        <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+        <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+        <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+        <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+        <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+        <result column="sign_date" jdbcType="DATE" property="signDate" />
+        <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+        <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+        <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+        <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+        <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+        <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+        <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+        <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+        <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+        <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+        <result column="slump" jdbcType="VARCHAR" property="slump" />
+        <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+        <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+        <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+        <result column="material_type" jdbcType="INTEGER" property="materialType" />
+        <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+        <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+        <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+        <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+        <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+        <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, contract_code, station_id,station_name, project_name, customer_id, customer_name, construction_unit,
+        accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method,
+        contract_responsible_person, construction_place, sign_date, delivery_date, telephone,
+        liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level,
+        bend_level, anticorrosive_level, technical_requirement, other_requirement, slump,
+        concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type,
+        stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name,
+        create_time, modify_user, modify_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from pp_contract
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectForList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from pp_contract
+        <include refid="where" />
+
+        <if test="sidx != null and sidx !=''">
+          order by #{sidx} #{sord}
+        </if>
+    </select>
+
+    <select id ="selectForMaxCode" resultType="java.lang.Integer">
+        select max(right(contract_code, 4)) from  pp_contract;
+    </select>
+
+    <select id ="selectNotImport" resultMap="BaseResultMap">
+        select  pc.id, pc.contract_code,pc.station_id,pc.station_name, pc.project_name, customer_id, customer_name, pc.construction_unit,
+            pc.accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method,
+            contract_responsible_person, pc.construction_place, sign_date, delivery_date, pc.telephone,
+            pc.liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level,
+            bend_level, anticorrosive_level, pc.technical_requirement, other_requirement, slump,
+            pc.concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type,
+            stone_diameter, cement_variety, cement_lable, pc.status, pc.create_user, pc.create_user_name,
+            pc.create_time, pc.modify_user, pc.modify_time
+        from pp_contract pc
+        left join pp_project pp ON pc.id = pp.contract_id
+        where pp.id is null
+
+        <if test="contractCode !=null and contractCode != ''">
+            and pc.contract_code = #{contractCode}
+        </if>
+
+        <if test="sidx != null and sidx !=''">
+            order by #{sidx} #{sord}
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from pp_contract
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert">
+        insert into pp_contract (id, contract_code, station_id,station_name,
+          project_name, customer_id, customer_name,
+          construction_unit, accounting_unit, contract_type,
+          plan_date, plan_quantity, max_amount,
+          settlement_method, contract_responsible_person,
+          construction_place, sign_date, delivery_date,
+          telephone, liaison_person, pour_part,
+          pour_method, intensity_level, impermeability_level,
+          frost_resistance_level, bend_level, anticorrosive_level,
+          technical_requirement, other_requirement,
+          slump, concrete_quantity, part_sort,
+          product_spec, material_type, stone_type,
+          sand_type, stone_diameter, cement_variety,
+          cement_lable, status, create_user,
+          create_user_name, create_time)
+        values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER},#{station_name,jdbcType=VARCHAR},
+          #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR},
+          #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER},
+          #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER},
+          #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR},
+          #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE},
+          #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR},
+          #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR},
+          #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR},
+          #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR},
+          #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER},
+          #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER},
+          #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER},
+          #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR},
+          #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateByPrimaryKey">
+        update pp_contract
+        set station_id = #{stationId,jdbcType=INTEGER},
+          project_name = #{projectName,jdbcType=VARCHAR},
+          customer_id = #{customerId,jdbcType=BIGINT},
+          customer_name = #{customerName,jdbcType=VARCHAR},
+          construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+          accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+          contract_type = #{contractType,jdbcType=INTEGER},
+          plan_date = #{planDate,jdbcType=TIMESTAMP},
+          plan_quantity = #{planQuantity,jdbcType=INTEGER},
+          max_amount = #{maxAmount,jdbcType=INTEGER},
+          settlement_method = #{settlementMethod,jdbcType=INTEGER},
+          contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+          construction_place = #{constructionPlace,jdbcType=VARCHAR},
+          sign_date = #{signDate,jdbcType=DATE},
+          delivery_date = #{deliveryDate,jdbcType=DATE},
+          telephone = #{telephone,jdbcType=VARCHAR},
+          liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+          pour_part = #{pourPart,jdbcType=VARCHAR},
+          pour_method = #{pourMethod,jdbcType=VARCHAR},
+          intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+          impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+          frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+          bend_level = #{bendLevel,jdbcType=VARCHAR},
+          anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+          technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+          other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+          slump = #{slump,jdbcType=VARCHAR},
+          concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+          part_sort = #{partSort,jdbcType=INTEGER},
+          product_spec = #{productSpec,jdbcType=VARCHAR},
+          material_type = #{materialType,jdbcType=INTEGER},
+          stone_type = #{stoneType,jdbcType=INTEGER},
+          sand_type = #{sandType,jdbcType=INTEGER},
+          stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+          cement_variety = #{cementVariety,jdbcType=INTEGER},
+          cement_lable = #{cementLable,jdbcType=VARCHAR},
+          status = #{status,jdbcType=INTEGER},
+          modify_user = #{modifyUser,jdbcType=VARCHAR},
+          modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    <update id="submit">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update pp_contract set status = "1" where id = #{item}
+        </foreach>
+    </update>
+
+    <delete id="delete">
+        <foreach collection="list" item="item" index="index" separator=";">
+            delete from pp_contract where id = #{item} and status = 0
+        </foreach>
+    </delete>
+
+    <sql id="where">
+        <where>
+          <if test="id !=null and id != ''">
+            and id = #{id}
+          </if>
+          <if test="contractCode !=null and contractCode != ''">
+            and contract_code = #{contractCode}
+          </if>
+          <if test="projectName !=null and projectName != ''">
+              and project_name like concat('%', #{projectName}, '%')
+          </if>
+          <if test="stationId !=null and stationId != ''">
+            and station_id = #{stationId}
+          </if>
+          <if test="constructionUnit !=null and constructionUnit != ''">
+            and construction_unit like concat('%', #{constructionUnit}, '%')
+          </if>
+            <if test="accountingUnit !=null and accountingUnit != ''">
+                and accounting_unit like concat('%', #{accountingUnit}, '%')
+            </if>
+          <if test="contractType !=null and contractType != ''">
+            and contract_type = #{contractType}
+          </if>
+
+        </where>
+    </sql>
+
+
+
+</mapper>

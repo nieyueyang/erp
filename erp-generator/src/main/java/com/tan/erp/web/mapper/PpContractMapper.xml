@@ -1,0 +1,4428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tan.erp.web.interface.PpContractMapper">
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpContract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+    <result column="station_id" jdbcType="INTEGER" property="stationId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="contract_type" jdbcType="INTEGER" property="contractType" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="max_amount" jdbcType="INTEGER" property="maxAmount" />
+    <result column="settlement_method" jdbcType="INTEGER" property="settlementMethod" />
+    <result column="contract_responsible_person" jdbcType="VARCHAR" property="contractResponsiblePerson" />
+    <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+    <result column="sign_date" jdbcType="DATE" property="signDate" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+    <result column="part_sort" jdbcType="INTEGER" property="partSort" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="material_type" jdbcType="INTEGER" property="materialType" />
+    <result column="stone_type" jdbcType="INTEGER" property="stoneType" />
+    <result column="sand_type" jdbcType="INTEGER" property="sandType" />
+    <result column="stone_diameter" jdbcType="INTEGER" property="stoneDiameter" />
+    <result column="cement_variety" jdbcType="INTEGER" property="cementVariety" />
+    <result column="cement_lable" jdbcType="VARCHAR" property="cementLable" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, contract_code, station_id, project_name, customer_id, customer_name, construction_unit, 
+    accounting_unit, contract_type, plan_date, plan_quantity, max_amount, settlement_method, 
+    contract_responsible_person, construction_place, sign_date, delivery_date, telephone, 
+    liaison_person, pour_part, pour_method, intensity_level, impermeability_level, frost_resistance_level, 
+    bend_level, anticorrosive_level, technical_requirement, other_requirement, slump, 
+    concrete_quantity, part_sort, product_spec, material_type, stone_type, sand_type, 
+    stone_diameter, cement_variety, cement_lable, status, create_user, create_user_name, 
+    create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract (id, contract_code, station_id, 
+      project_name, customer_id, customer_name, 
+      construction_unit, accounting_unit, contract_type, 
+      plan_date, plan_quantity, max_amount, 
+      settlement_method, contract_responsible_person, 
+      construction_place, sign_date, delivery_date, 
+      telephone, liaison_person, pour_part, 
+      pour_method, intensity_level, impermeability_level, 
+      frost_resistance_level, bend_level, anticorrosive_level, 
+      technical_requirement, other_requirement, 
+      slump, concrete_quantity, part_sort, 
+      product_spec, material_type, stone_type, 
+      sand_type, stone_diameter, cement_variety, 
+      cement_lable, status, create_user, 
+      create_user_name, create_time, modify_user, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{stationId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{constructionUnit,jdbcType=VARCHAR}, #{accountingUnit,jdbcType=VARCHAR}, #{contractType,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{planQuantity,jdbcType=INTEGER}, #{maxAmount,jdbcType=INTEGER}, 
+      #{settlementMethod,jdbcType=INTEGER}, #{contractResponsiblePerson,jdbcType=VARCHAR}, 
+      #{constructionPlace,jdbcType=VARCHAR}, #{signDate,jdbcType=DATE}, #{deliveryDate,jdbcType=DATE}, 
+      #{telephone,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{pourMethod,jdbcType=VARCHAR}, #{intensityLevel,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, 
+      #{frostResistanceLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR}, #{anticorrosiveLevel,jdbcType=VARCHAR}, 
+      #{technicalRequirement,jdbcType=VARCHAR}, #{otherRequirement,jdbcType=VARCHAR}, 
+      #{slump,jdbcType=VARCHAR}, #{concreteQuantity,jdbcType=INTEGER}, #{partSort,jdbcType=INTEGER}, 
+      #{productSpec,jdbcType=VARCHAR}, #{materialType,jdbcType=INTEGER}, #{stoneType,jdbcType=INTEGER}, 
+      #{sandType,jdbcType=INTEGER}, #{stoneDiameter,jdbcType=INTEGER}, #{cementVariety,jdbcType=INTEGER}, 
+      #{cementLable,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpContract">
+    insert into pp_contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contractCode != null">
+        contract_code,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit,
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="maxAmount != null">
+        max_amount,
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method,
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person,
+      </if>
+      <if test="constructionPlace != null">
+        construction_place,
+      </if>
+      <if test="signDate != null">
+        sign_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level,
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level,
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level,
+      </if>
+      <if test="bendLevel != null">
+        bend_level,
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level,
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement,
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement,
+      </if>
+      <if test="slump != null">
+        slump,
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity,
+      </if>
+      <if test="partSort != null">
+        part_sort,
+      </if>
+      <if test="productSpec != null">
+        product_spec,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="stoneType != null">
+        stone_type,
+      </if>
+      <if test="sandType != null">
+        sand_type,
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter,
+      </if>
+      <if test="cementVariety != null">
+        cement_variety,
+      </if>
+      <if test="cementLable != null">
+        cement_lable,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contractCode != null">
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    <set>
+      <if test="contractCode != null">
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionUnit != null">
+        construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingUnit != null">
+        accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null">
+        max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="settlementMethod != null">
+        settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      </if>
+      <if test="contractResponsiblePerson != null">
+        contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionPlace != null">
+        construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="signDate != null">
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="liaisonPerson != null">
+        liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="intensityLevel != null">
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="impermeabilityLevel != null">
+        impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="frostResistanceLevel != null">
+        frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="bendLevel != null">
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="anticorrosiveLevel != null">
+        anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalRequirement != null">
+        technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRequirement != null">
+        other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="slump != null">
+        slump = #{slump,jdbcType=VARCHAR},
+      </if>
+      <if test="concreteQuantity != null">
+        concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="partSort != null">
+        part_sort = #{partSort,jdbcType=INTEGER},
+      </if>
+      <if test="productSpec != null">
+        product_spec = #{productSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneType != null">
+        stone_type = #{stoneType,jdbcType=INTEGER},
+      </if>
+      <if test="sandType != null">
+        sand_type = #{sandType,jdbcType=INTEGER},
+      </if>
+      <if test="stoneDiameter != null">
+        stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      </if>
+      <if test="cementVariety != null">
+        cement_variety = #{cementVariety,jdbcType=INTEGER},
+      </if>
+      <if test="cementLable != null">
+        cement_lable = #{cementLable,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpContract">
+    update pp_contract
+    set contract_code = #{contractCode,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      construction_unit = #{constructionUnit,jdbcType=VARCHAR},
+      accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      max_amount = #{maxAmount,jdbcType=INTEGER},
+      settlement_method = #{settlementMethod,jdbcType=INTEGER},
+      contract_responsible_person = #{contractResponsiblePerson,jdbcType=VARCHAR},
+      construction_place = #{constructionPlace,jdbcType=VARCHAR},
+      sign_date = #{signDate,jdbcType=DATE},
+      delivery_date = #{deliveryDate,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+      impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+      frost_resistance_level = #{frostResistanceLevel,jdbcType=VARCHAR},
+      bend_level = #{bendLevel,jdbcType=VARCHAR},
+      anticorrosive_level = #{anticorrosiveLevel,jdbcType=VARCHAR},
+      technical_requirement = #{technicalRequirement,jdbcType=VARCHAR},
+      other_requirement = #{otherRequirement,jdbcType=VARCHAR},
+      slump = #{slump,jdbcType=VARCHAR},
+      concrete_quantity = #{concreteQuantity,jdbcType=INTEGER},
+      part_sort = #{partSort,jdbcType=INTEGER},
+      product_spec = #{productSpec,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=INTEGER},
+      stone_type = #{stoneType,jdbcType=INTEGER},
+      sand_type = #{sandType,jdbcType=INTEGER},
+      stone_diameter = #{stoneDiameter,jdbcType=INTEGER},
+      cement_variety = #{cementVariety,jdbcType=INTEGER},
+      cement_lable = #{cementLable,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

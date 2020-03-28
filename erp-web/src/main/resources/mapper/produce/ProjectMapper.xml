@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project">
+
+    <resultMap id="BaseResultMap" type="com.tan.erp.web.produce.entity.ProjectEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="project_code" jdbcType="VARCHAR" property="projectCode" />
+        <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+        <result column="contract_id" jdbcType="BIGINT" property="contractId" />
+        <result column="contract_code" jdbcType="VARCHAR" property="contractCode" />
+        <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+        <result column="station_id" jdbcType="VARCHAR" property="stationId" />
+        <result column="station_name" jdbcType="VARCHAR" property="stationName" />
+        <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+        <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+        <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+        <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+        <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+        <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+        <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+        <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+        <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+        <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+        <result column="slump" jdbcType="VARCHAR" property="slump" />
+        <result column="project_status" jdbcType="INTEGER" property="projectStatus" />
+        <result column="project_category" jdbcType="INTEGER" property="projectCategory" />
+        <result column="project_county" jdbcType="INTEGER" property="projectCounty" />
+        <result column="concrete_quantity" jdbcType="INTEGER" property="concreteQuantity" />
+        <result column="commencement_date" jdbcType="DATE" property="commencementDate" />
+        <result column="plan_period" jdbcType="INTEGER" property="planPeriod" />
+        <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+        <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+        <result column="investment_unit" jdbcType="VARCHAR" property="investmentUnit" />
+        <result column="supervisors_unit" jdbcType="VARCHAR" property="supervisorsUnit" />
+        <result column="construction_place" jdbcType="VARCHAR" property="constructionPlace" />
+        <result column="transport_distance" jdbcType="INTEGER" property="transportDistance" />
+        <result column="transport_cost" jdbcType="INTEGER" property="transportCost" />
+        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="liaison_person" jdbcType="VARCHAR" property="liaisonPerson" />
+        <result column="legal_representative" jdbcType="VARCHAR" property="legalRepresentative" />
+        <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+        <result column="supplier" jdbcType="VARCHAR" property="supplier" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+        <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        pp.id,pp.project_code,pp.contract_id,pp.contract_code,pp.project_status,pp.project_category,
+        pp.project_county,pp.commencement_date,pp.plan_period,pp.investment_unit,pp.supervisors_unit,
+        pp.transport_distance,pp.transport_cost,pp.legal_representative,pp.supplier,pp.status,pp.create_user,
+        pp.create_user_name,pp.create_time,pp.modify_user,pp.modify_time,
+        pc.project_name,pc.construction_unit,pc.accounting_unit,pc.construction_place,pc.liaison_person,
+        pc.telephone,pc.concrete_quantity,pc.Technical_requirement,pc.customer_id,pc.customer_name,
+        pc.station_id,pc.station_name,pc.delivery_date,pc.pour_part,pc.pour_method,pc.plan_date,
+        pc.plan_quantity,pc.intensity_level,pc.impermeability_level,pc.frost_resistance_level,
+        pc.bend_level,pc.anticorrosive_level,pc.slump
+
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from pp_project pp left join pp_contract pc on pp.contract_id = pc.id
+        where pp.id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByContractId"  resultType="java.lang.Integer">
+        select count(*) count
+        from pp_project where contract_id = #{contractId}
+    </select>
+
+    <select id="selectForList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from pp_project pp left join pp_contract pc on pp.contract_id = pc.id
+        <include refid="where" />
+
+        <if test="sidx != null and sidx !=''">
+            order by #{sidx} #{sord}
+        </if>
+    </select>
+
+    <select id ="selectForMaxCode" resultType="java.lang.Integer">
+        select max(right(project_code, 4)) from  pp_project;
+    </select>
+
+    <select id ="selectNotImport" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from pp_project pp left join pp_task pt on pp.id = pt.project_id
+        inner join pp_contract pc on pp.contract_id = pc.id
+        where pt.id is null and pp.status=1
+
+        <if test="id !=null and id != ''">
+            and pp.id = #{id}
+        </if>
+        <if test="projectCode !=null and projectCode != ''">
+            and pp.project_code = #{projectCode}
+        </if>
+        <if test="projectName !=null and projectName != ''">
+            and pc.project_name like concat('%', #{projectName}, '%')
+        </if>
+        <if test="projectStatus !=null and projectStatus != ''">
+            and pp.project_status = #{projectStatus}
+        </if>
+        <if test="projectCategory !=null and projectCategory != ''">
+            and pp.project_category = #{projectCategory}
+        </if>
+
+        <if test="sidx != null and sidx !=''">
+            order by #{sidx} #{sord}
+        </if>
+
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from pp_project
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into pp_project (id, project_code, project_name,
+          contract_id, contract_code, project_status,project_category,
+          project_county,commencement_date, plan_period,investment_unit,
+          supervisors_unit,transport_distance, transport_cost,legal_representative,
+          supplier, status,create_user, create_user_name, create_time)
+        values (#{id,jdbcType=BIGINT}, #{projectCode,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR},
+          #{contractId,jdbcType=BIGINT}, #{contractCode,jdbcType=VARCHAR}, #{projectStatus,jdbcType=INTEGER},
+          #{projectCategory,jdbcType=INTEGER}, #{projectCounty,jdbcType=INTEGER},
+          #{commencementDate,jdbcType=DATE}, #{planPeriod,jdbcType=INTEGER},
+          #{investmentUnit,jdbcType=VARCHAR}, #{supervisorsUnit,jdbcType=VARCHAR},
+          #{transportDistance,jdbcType=INTEGER}, #{transportCost,jdbcType=INTEGER},
+          #{legalRepresentative,jdbcType=VARCHAR},#{supplier,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+          #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+        <foreach collection="list" item="item" index="index" separator=";">
+            insert into pp_project (id, project_code, project_name,
+            contract_id, contract_code, project_status,project_category,
+            project_county,commencement_date, plan_period,investment_unit,
+            supervisors_unit,transport_distance, transport_cost,legal_representative,
+            supplier, status,create_user, create_user_name, create_time)
+            values (#{item.id,jdbcType=BIGINT}, #{item.projectCode,jdbcType=VARCHAR}, #{item.projectName,jdbcType=VARCHAR},
+            #{item.contractId,jdbcType=BIGINT}, #{item.contractCode,jdbcType=VARCHAR}, #{item.projectStatus,jdbcType=INTEGER},
+            #{item.projectCategory,jdbcType=INTEGER}, #{item.projectCounty,jdbcType=INTEGER},
+            #{item.commencementDate,jdbcType=DATE}, #{item.planPeriod,jdbcType=INTEGER},
+            #{item.investmentUnit,jdbcType=VARCHAR}, #{item.supervisorsUnit,jdbcType=VARCHAR},
+            #{item.transportDistance,jdbcType=INTEGER}, #{item.transportCost,jdbcType=INTEGER},
+            #{item.legalRepresentative,jdbcType=VARCHAR},#{item.supplier,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER},
+            #{item.createUser,jdbcType=VARCHAR}, #{item.createUserName,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+
+    <update id="updateById">
+        update pp_project
+         set project_name = #{projectName,jdbcType=VARCHAR},
+          contract_id = #{contractId,jdbcType=BIGINT},
+          contract_code = #{contractCode,jdbcType=VARCHAR},
+          project_status = #{projectStatus,jdbcType=INTEGER},
+          project_category = #{projectCategory,jdbcType=INTEGER},
+          project_county = #{projectCounty,jdbcType=INTEGER},
+          commencement_date = #{commencementDate,jdbcType=DATE},
+          plan_period = #{planPeriod,jdbcType=INTEGER},
+          investment_unit = #{investmentUnit,jdbcType=VARCHAR},
+          supervisors_unit = #{supervisorsUnit,jdbcType=VARCHAR},
+          transport_distance = #{transportDistance,jdbcType=INTEGER},
+          transport_cost = #{transportCost,jdbcType=INTEGER},
+          legal_representative = #{legalRepresentative,jdbcType=VARCHAR},
+          supplier = #{supplier,jdbcType=VARCHAR},
+          status = #{status,jdbcType=INTEGER},
+          modify_user = #{modifyUser,jdbcType=VARCHAR},
+          modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT} and status = '0'
+    </update>
+
+    <update id="submit">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update pp_project set status = "1" where id = #{item}
+        </foreach>
+    </update>
+
+    <delete id="delete">
+        <foreach collection="list" item="item" index="index" separator=";">
+            delete from pp_project where id = #{item} and status = 0
+        </foreach>
+    </delete>
+
+    <sql id="where">
+        <where>
+            <if test="id !=null and id != ''">
+                and pp.id = #{id}
+            </if>
+            <if test="projectCode !=null and projectCode != ''">
+                and pp.project_code = #{projectCode}
+            </if>
+            <if test="projectName !=null and projectName != ''">
+                and pc.project_name like concat('%', #{projectName}, '%')
+            </if>
+            <if test="projectStatus !=null and projectStatus != ''">
+                and pp.project_status = #{projectStatus}
+            </if>
+            <if test="projectCategory !=null and projectCategory != ''">
+                and pp.project_category = #{projectCategory}
+            </if>
+            <if test="status !=null and status != ''">
+                and pp.status = #{status}
+            </if>
+
+        </where>
+    </sql>
+
+
+
+</mapper>

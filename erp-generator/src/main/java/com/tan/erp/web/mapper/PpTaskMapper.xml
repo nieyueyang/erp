@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tan.erp.web.interface.PpTaskMapper">
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_code" jdbcType="VARCHAR" property="taskCode" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="station_id" jdbcType="BIGINT" property="stationId" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="produce_id" jdbcType="BIGINT" property="produceId" />
+    <result column="recipe_id" jdbcType="BIGINT" property="recipeId" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_core_info" jdbcType="VARCHAR" property="projectCoreInfo" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="transport_distance" jdbcType="INTEGER" property="transportDistance" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="out_quantity" jdbcType="INTEGER" property="outQuantity" />
+    <result column="end_quantity" jdbcType="INTEGER" property="endQuantity" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="delivery_telephone" jdbcType="VARCHAR" property="deliveryTelephone" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_code, task_name, station_id, customer_id, customer_name, order_id, produce_id, 
+    recipe_id, employee_id, project_name, project_core_info, pour_part, pour_method, 
+    transport_distance, plan_quantity, out_quantity, end_quantity, plan_date, delivery_telephone, 
+    status, create_user, create_user_name, create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpTask">
+    insert into pp_task (id, task_code, task_name, 
+      station_id, customer_id, customer_name, 
+      order_id, produce_id, recipe_id, 
+      employee_id, project_name, project_core_info, 
+      pour_part, pour_method, transport_distance, 
+      plan_quantity, out_quantity, end_quantity, 
+      plan_date, delivery_telephone, status, 
+      create_user, create_user_name, create_time, 
+      modify_user, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{taskCode,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, 
+      #{stationId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=BIGINT}, #{produceId,jdbcType=BIGINT}, #{recipeId,jdbcType=BIGINT}, 
+      #{employeeId,jdbcType=BIGINT}, #{projectName,jdbcType=VARCHAR}, #{projectCoreInfo,jdbcType=VARCHAR}, 
+      #{pourPart,jdbcType=VARCHAR}, #{pourMethod,jdbcType=VARCHAR}, #{transportDistance,jdbcType=INTEGER}, 
+      #{planQuantity,jdbcType=INTEGER}, #{outQuantity,jdbcType=INTEGER}, #{endQuantity,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{deliveryTelephone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpTask">
+    insert into pp_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskCode != null">
+        task_code,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="produceId != null">
+        produce_id,
+      </if>
+      <if test="recipeId != null">
+        recipe_id,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="projectCoreInfo != null">
+        project_core_info,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="transportDistance != null">
+        transport_distance,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="outQuantity != null">
+        out_quantity,
+      </if>
+      <if test="endQuantity != null">
+        end_quantity,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="deliveryTelephone != null">
+        delivery_telephone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="produceId != null">
+        #{produceId,jdbcType=BIGINT},
+      </if>
+      <if test="recipeId != null">
+        #{recipeId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCoreInfo != null">
+        #{projectCoreInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDistance != null">
+        #{transportDistance,jdbcType=INTEGER},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outQuantity != null">
+        #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="endQuantity != null">
+        #{endQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTelephone != null">
+        #{deliveryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpTask">
+    update pp_task
+    <set>
+      <if test="taskCode != null">
+        task_code = #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="produceId != null">
+        produce_id = #{produceId,jdbcType=BIGINT},
+      </if>
+      <if test="recipeId != null">
+        recipe_id = #{recipeId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCoreInfo != null">
+        project_core_info = #{projectCoreInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDistance != null">
+        transport_distance = #{transportDistance,jdbcType=INTEGER},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outQuantity != null">
+        out_quantity = #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="endQuantity != null">
+        end_quantity = #{endQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTelephone != null">
+        delivery_telephone = #{deliveryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpTask">
+    update pp_task
+    set task_code = #{taskCode,jdbcType=VARCHAR},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=BIGINT},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT},
+      produce_id = #{produceId,jdbcType=BIGINT},
+      recipe_id = #{recipeId,jdbcType=BIGINT},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      project_core_info = #{projectCoreInfo,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      transport_distance = #{transportDistance,jdbcType=INTEGER},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      out_quantity = #{outQuantity,jdbcType=INTEGER},
+      end_quantity = #{endQuantity,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      delivery_telephone = #{deliveryTelephone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_code" jdbcType="VARCHAR" property="taskCode" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="station_id" jdbcType="BIGINT" property="stationId" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="produce_id" jdbcType="BIGINT" property="produceId" />
+    <result column="recipe_id" jdbcType="BIGINT" property="recipeId" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_core_info" jdbcType="VARCHAR" property="projectCoreInfo" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="transport_distance" jdbcType="INTEGER" property="transportDistance" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="out_quantity" jdbcType="INTEGER" property="outQuantity" />
+    <result column="end_quantity" jdbcType="INTEGER" property="endQuantity" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="delivery_telephone" jdbcType="VARCHAR" property="deliveryTelephone" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_code, task_name, station_id, customer_id, customer_name, order_id, produce_id, 
+    recipe_id, employee_id, project_name, project_core_info, pour_part, pour_method, 
+    transport_distance, plan_quantity, out_quantity, end_quantity, plan_date, delivery_telephone, 
+    status, create_user, create_user_name, create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpTask">
+    insert into pp_task (id, task_code, task_name, 
+      station_id, customer_id, customer_name, 
+      order_id, produce_id, recipe_id, 
+      employee_id, project_name, project_core_info, 
+      pour_part, pour_method, transport_distance, 
+      plan_quantity, out_quantity, end_quantity, 
+      plan_date, delivery_telephone, status, 
+      create_user, create_user_name, create_time, 
+      modify_user, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{taskCode,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, 
+      #{stationId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=BIGINT}, #{produceId,jdbcType=BIGINT}, #{recipeId,jdbcType=BIGINT}, 
+      #{employeeId,jdbcType=BIGINT}, #{projectName,jdbcType=VARCHAR}, #{projectCoreInfo,jdbcType=VARCHAR}, 
+      #{pourPart,jdbcType=VARCHAR}, #{pourMethod,jdbcType=VARCHAR}, #{transportDistance,jdbcType=INTEGER}, 
+      #{planQuantity,jdbcType=INTEGER}, #{outQuantity,jdbcType=INTEGER}, #{endQuantity,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{deliveryTelephone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpTask">
+    insert into pp_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskCode != null">
+        task_code,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="produceId != null">
+        produce_id,
+      </if>
+      <if test="recipeId != null">
+        recipe_id,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="projectCoreInfo != null">
+        project_core_info,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="transportDistance != null">
+        transport_distance,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="outQuantity != null">
+        out_quantity,
+      </if>
+      <if test="endQuantity != null">
+        end_quantity,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="deliveryTelephone != null">
+        delivery_telephone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="produceId != null">
+        #{produceId,jdbcType=BIGINT},
+      </if>
+      <if test="recipeId != null">
+        #{recipeId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCoreInfo != null">
+        #{projectCoreInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDistance != null">
+        #{transportDistance,jdbcType=INTEGER},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outQuantity != null">
+        #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="endQuantity != null">
+        #{endQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTelephone != null">
+        #{deliveryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpTask">
+    update pp_task
+    <set>
+      <if test="taskCode != null">
+        task_code = #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="produceId != null">
+        produce_id = #{produceId,jdbcType=BIGINT},
+      </if>
+      <if test="recipeId != null">
+        recipe_id = #{recipeId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCoreInfo != null">
+        project_core_info = #{projectCoreInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDistance != null">
+        transport_distance = #{transportDistance,jdbcType=INTEGER},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outQuantity != null">
+        out_quantity = #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="endQuantity != null">
+        end_quantity = #{endQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTelephone != null">
+        delivery_telephone = #{deliveryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpTask">
+    update pp_task
+    set task_code = #{taskCode,jdbcType=VARCHAR},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=BIGINT},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT},
+      produce_id = #{produceId,jdbcType=BIGINT},
+      recipe_id = #{recipeId,jdbcType=BIGINT},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      project_core_info = #{projectCoreInfo,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      transport_distance = #{transportDistance,jdbcType=INTEGER},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      out_quantity = #{outQuantity,jdbcType=INTEGER},
+      end_quantity = #{endQuantity,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      delivery_telephone = #{deliveryTelephone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.entity.PpTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_code" jdbcType="VARCHAR" property="taskCode" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="station_id" jdbcType="BIGINT" property="stationId" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_core_info" jdbcType="VARCHAR" property="projectCoreInfo" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="recipe_id" jdbcType="BIGINT" property="recipeId" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="transport_distance" jdbcType="INTEGER" property="transportDistance" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="out_quantity" jdbcType="INTEGER" property="outQuantity" />
+    <result column="end_quantity" jdbcType="INTEGER" property="endQuantity" />
+    <result column="plan_date" jdbcType="TIMESTAMP" property="planDate" />
+    <result column="delivery_telephone" jdbcType="VARCHAR" property="deliveryTelephone" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, task_code, task_name, station_id, customer_id, customer_name, order_id, project_id, 
+    employee_id, project_name, project_core_info, pour_part, recipe_id, pour_method, 
+    transport_distance, plan_quantity, out_quantity, end_quantity, plan_date, delivery_telephone, 
+    status, create_user, create_user_name, create_time, modify_user, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pp_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tan.erp.web.entity.PpTask">
+    insert into pp_task (id, task_code, task_name, 
+      station_id, customer_id, customer_name, 
+      order_id, project_id, employee_id, 
+      project_name, project_core_info, pour_part, 
+      recipe_id, pour_method, transport_distance, 
+      plan_quantity, out_quantity, end_quantity, 
+      plan_date, delivery_telephone, status, 
+      create_user, create_user_name, create_time, 
+      modify_user, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{taskCode,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, 
+      #{stationId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{employeeId,jdbcType=BIGINT}, 
+      #{projectName,jdbcType=VARCHAR}, #{projectCoreInfo,jdbcType=VARCHAR}, #{pourPart,jdbcType=VARCHAR}, 
+      #{recipeId,jdbcType=BIGINT}, #{pourMethod,jdbcType=VARCHAR}, #{transportDistance,jdbcType=INTEGER}, 
+      #{planQuantity,jdbcType=INTEGER}, #{outQuantity,jdbcType=INTEGER}, #{endQuantity,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=TIMESTAMP}, #{deliveryTelephone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tan.erp.web.entity.PpTask">
+    insert into pp_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="taskCode != null">
+        task_code,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="stationId != null">
+        station_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="projectCoreInfo != null">
+        project_core_info,
+      </if>
+      <if test="pourPart != null">
+        pour_part,
+      </if>
+      <if test="recipeId != null">
+        recipe_id,
+      </if>
+      <if test="pourMethod != null">
+        pour_method,
+      </if>
+      <if test="transportDistance != null">
+        transport_distance,
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity,
+      </if>
+      <if test="outQuantity != null">
+        out_quantity,
+      </if>
+      <if test="endQuantity != null">
+        end_quantity,
+      </if>
+      <if test="planDate != null">
+        plan_date,
+      </if>
+      <if test="deliveryTelephone != null">
+        delivery_telephone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="taskCode != null">
+        #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        #{stationId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCoreInfo != null">
+        #{projectCoreInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="recipeId != null">
+        #{recipeId,jdbcType=BIGINT},
+      </if>
+      <if test="pourMethod != null">
+        #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDistance != null">
+        #{transportDistance,jdbcType=INTEGER},
+      </if>
+      <if test="planQuantity != null">
+        #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outQuantity != null">
+        #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="endQuantity != null">
+        #{endQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTelephone != null">
+        #{deliveryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tan.erp.web.entity.PpTask">
+    update pp_task
+    <set>
+      <if test="taskCode != null">
+        task_code = #{taskCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="stationId != null">
+        station_id = #{stationId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCoreInfo != null">
+        project_core_info = #{projectCoreInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pourPart != null">
+        pour_part = #{pourPart,jdbcType=VARCHAR},
+      </if>
+      <if test="recipeId != null">
+        recipe_id = #{recipeId,jdbcType=BIGINT},
+      </if>
+      <if test="pourMethod != null">
+        pour_method = #{pourMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="transportDistance != null">
+        transport_distance = #{transportDistance,jdbcType=INTEGER},
+      </if>
+      <if test="planQuantity != null">
+        plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="outQuantity != null">
+        out_quantity = #{outQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="endQuantity != null">
+        end_quantity = #{endQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        plan_date = #{planDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTelephone != null">
+        delivery_telephone = #{deliveryTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tan.erp.web.entity.PpTask">
+    update pp_task
+    set task_code = #{taskCode,jdbcType=VARCHAR},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      station_id = #{stationId,jdbcType=BIGINT},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      project_core_info = #{projectCoreInfo,jdbcType=VARCHAR},
+      pour_part = #{pourPart,jdbcType=VARCHAR},
+      recipe_id = #{recipeId,jdbcType=BIGINT},
+      pour_method = #{pourMethod,jdbcType=VARCHAR},
+      transport_distance = #{transportDistance,jdbcType=INTEGER},
+      plan_quantity = #{planQuantity,jdbcType=INTEGER},
+      out_quantity = #{outQuantity,jdbcType=INTEGER},
+      end_quantity = #{endQuantity,jdbcType=INTEGER},
+      plan_date = #{planDate,jdbcType=TIMESTAMP},
+      delivery_telephone = #{deliveryTelephone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.task">
+  <resultMap id="BaseResultMap" type="com.tan.erp.web.produce.entity.TaskEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_code" jdbcType="VARCHAR" property="taskCode" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="station_id" jdbcType="BIGINT" property="stationId" />
+    <result column="station_name" jdbcType="BIGINT" property="stationName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="project_code" jdbcType="BIGINT" property="projectCode" />
+    <result column="recipe_id" jdbcType="BIGINT" property="recipeId" />
+    <result column="recipe_code" jdbcType="BIGINT" property="recipeCode" />
+    <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_core_info" jdbcType="VARCHAR" property="projectCoreInfo" />
+    <result column="pour_part" jdbcType="VARCHAR" property="pourPart" />
+    <result column="pour_method" jdbcType="VARCHAR" property="pourMethod" />
+    <result column="transport_distance" jdbcType="INTEGER" property="transportDistance" />
+    <result column="plan_quantity" jdbcType="INTEGER" property="planQuantity" />
+    <result column="out_quantity" jdbcType="INTEGER" property="outQuantity" />
+    <result column="end_quantity" jdbcType="INTEGER" property="endQuantity" />
+    <result column="plan_date" jdbcType="DATE" property="planDate" />
+    <result column="delivery_telephone" jdbcType="VARCHAR" property="deliveryTelephone" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="construction_unit" jdbcType="VARCHAR" property="constructionUnit" />
+    <result column="accounting_unit" jdbcType="VARCHAR" property="accountingUnit" />
+    <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="product_spec" jdbcType="VARCHAR" property="productSpec" />
+    <result column="slump" jdbcType="VARCHAR" property="slump" />
+    <result column="impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+    <result column="frost_resistance_level" jdbcType="VARCHAR" property="frostResistanceLevel" />
+    <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+    <result column="anticorrosive_level" jdbcType="VARCHAR" property="anticorrosiveLevel" />
+    <result column="technical_requirement" jdbcType="VARCHAR" property="technicalRequirement" />
+    <result column="other_requirement" jdbcType="VARCHAR" property="otherRequirement" />
+
+
+
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, task_code, task_name, order_id, project_id,
+    recipe_id, employee_id,project_core_info,out_quantity, end_quantity,  delivery_telephone,
+    status, create_user, create_user_name, create_time, modify_user, modify_time
+  </sql>
+
+  <sql id="All_Column_List">
+      pt.id,pt.task_code,pt.task_name,pt.recipe_id,pt.out_quantity,pt.end_quantity,
+      pt.order_id,pt.employee_id,pt.employee_name,pt.project_core_info,pt.delivery_telephone,pt.status,
+      pt.create_user,pt.create_user_name,pt.create_time,pt.modify_user,pt.modify_time,
+      pp.id project_id,pp.project_code,pp.project_name,pp.transport_distance,
+      pc.id contract_id,pc.contract_code,pc.station_id,pc.station_name,pc.customer_id,pc.customer_name,
+      pc.construction_unit,pc.pour_method,pc.pour_part,pc.intensity_level,
+      pc.delivery_date,pc.plan_date,pc.plan_quantity,pc.product_spec,pc.accounting_unit,pc.slump,
+      pc.impermeability_level,pc.frost_resistance_level,pc.bend_level,pc.anticorrosive_level,
+      pc.technical_requirement,pc.other_requirement,pc.construction_unit
+  </sql>
+
+  <select id="selectForList" resultMap="BaseResultMap">
+      select <include refid="All_Column_List" />
+      from pp_task pt left join pp_project pp on pt.project_id=pp.id
+      left join pp_contract pc on pp.contract_id = pc.id
+
+      <include refid="where" />
+
+      <if test="sidx != null and sidx !=''">
+        order by #{sidx} #{sord}
+      </if>
+
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pp_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id ="selectForMaxCode" resultType="java.lang.Integer">
+        select max(right(task_code, 4)) from  pp_task;
+  </select>
+
+  <select id="selectByProjectId"  resultType="java.lang.Integer">
+        select count(*) count
+        from pp_task where project_id = #{projectId}
+  </select>
+
+  <insert id="insert">
+      insert into pp_task (id, task_code, task_name,order_id, project_id, recipe_id, employee_id,
+      employee_name,project_core_info,out_quantity,end_quantity,delivery_telephone, status,
+      create_user, create_user_name, create_time)
+      values (#{id,jdbcType=BIGINT}, #{taskCode,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR},
+      #{orderId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{recipeId,jdbcType=BIGINT},
+      #{employeeId,jdbcType=BIGINT}, #{employeeName,jdbcType=VARCHAR}, #{projectCoreInfo,jdbcType=VARCHAR},
+      #{outQuantity,jdbcType=INTEGER}, #{endQuantity,jdbcType=INTEGER},
+      #{deliveryTelephone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+    <foreach collection="list" item="item" index="index" separator=";">
+      insert into pp_task (id, task_code, task_name,order_id, project_id, recipe_id, employee_id,
+      employee_name,project_core_info,out_quantity,end_quantity,delivery_telephone, status,
+      create_user, create_user_name, create_time)
+      values (#{item.id,jdbcType=BIGINT}, #{item.taskCode,jdbcType=VARCHAR}, #{item.taskName,jdbcType=VARCHAR},
+      #{item.orderId,jdbcType=BIGINT}, #{item.projectId,jdbcType=BIGINT}, #{item.recipeId,jdbcType=BIGINT},
+      #{item.employeeId,jdbcType=BIGINT}, #{item.employeeName,jdbcType=VARCHAR}, #{item.projectCoreInfo,jdbcType=VARCHAR},
+      #{item.outQuantity,jdbcType=INTEGER}, #{item.endQuantity,jdbcType=INTEGER},#{item.deliveryTelephone,jdbcType=VARCHAR},
+      #{item.status,jdbcType=VARCHAR},
+      #{item.createUser,jdbcType=VARCHAR}, #{item.createUserName,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+
+  <update id="updateByPrimaryKey" >
+    update pp_task
+    set task_name = #{taskName,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      recipe_id = #{recipeId,jdbcType=BIGINT},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      employee_name = #{employeeName,jdbcType=VARCHAR},
+      project_core_info = #{projectCoreInfo,jdbcType=VARCHAR},
+      out_quantity = #{outQuantity,jdbcType=INTEGER},
+      end_quantity = #{endQuantity,jdbcType=INTEGER},
+      delivery_telephone = #{deliveryTelephone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="submit">
+    <foreach collection="list" item="item" index="index" separator=";">
+      update pp_task set status = "1" where id = #{item}
+    </foreach>
+  </update>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+      <foreach collection="list" item="item" index="index" separator=";">
+          delete from pp_task where id = #{item} and status = 0
+      </foreach>
+
+  </delete>
+
+  <sql id="where">
+    <where>
+      <if test="id !=null and id != ''">
+        and id = #{id}
+      </if>
+      <if test="taskCode !=null and taskCode != ''">
+        and pt.task_code = #{taskCode}
+      </if>
+      <if test="projectId !=null and projectId != ''">
+        and pp.project_code = #{projectCode}
+      </if>
+      <if test="projectName !=null and projectName != ''">
+        and pp.project_name like concat('%', #{projectName}, '%')
+      </if>
+
+    </where>
+  </sql>
+
+
+</mapper>

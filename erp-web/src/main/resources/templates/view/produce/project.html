@@ -1,0 +1,130 @@
+<#include "/view/layout/head.html">
+
+<div id="app" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <div class="form-group col-sm-2">
+                <input type="text" class="form-control" v-model="query.projectCode" @keyup.enter="query" placeholder="合同编号">
+            </div>
+            <a id="query" class="btn btn-default" @click="query">查询</a>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <a class="btn btn-primary" @click="submit"><i class="fa fa-check"></i>&nbsp;提交</a>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-times"></i>&nbsp;删除</a>
+            <a class="btn btn-primary" @click="importTask"><i class="fa fa-share"></i>&nbsp;生成任务单</a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-edit">
+            <input type="hidden" style="width:200px" v-model="project.id"/>
+            <!-- 合同ID-->
+            <td><input type="hidden" v-model="project.contractId"/></td>
+
+            <table>
+                <tr>
+                    <th class="xrequired">工程编号：</th>
+                    <td><input type="text" style="width:200px" v-model="project.projectCode" readOnly=true/></td>
+                    <th class="xrequired">工程名称：</th>
+                    <td><input type="text" style="width:400px" v-model="project.projectName" readOnly=true/></td>
+                    <th>工程状态：</th>
+                    <td>
+                        <select id="projectStatus" v-model="project.projectStatus">
+                            <option value="">---请选择---</option>
+                            <option value="0">施工</option>
+                            <option value="1">竣工</option>
+                            <option value="2">暂停</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+
+                    <th>合同编号：</th>
+                    <td>
+                        <input type="text" v-model="project.contractCode" style="width: 180px" readOnly=true  @dblclick="selectContract" />
+                        <a class="fa fa-search " style="cursor: pointer;text-decoration:none;" @click="selectContract"></a>
+                        <!-- <input type="butoon" style="width: 30px" value="选择" @click="selectContract"></input>-->
+                    </td>
+
+                    <th class="xrequired">施工单位：</th>
+                    <td><input type="text" v-model="project.constructionUnit" readOnly=true/></td>
+
+                    <th>开工日期：</th>
+                    <td><input type="date" v-model="project.commencementDate"/></td>
+                </tr>
+                <tr>
+                    <th>工程类别：</th>
+                    <td>
+                        <select v-model="project.projectCategory">
+                            <option value="">---请选择---</option>
+                            <option value="0">类别1</option>
+                            <option value="1">类别2</option>
+                        </select>
+                    </td>
+                    <th class="xrequired">核算单位：</th>
+                    <td><input type="text" v-model="project.accountingUnit" readOnly=true/></td>
+
+                    <th>计划工期：</th>
+                    <td><input type="text" v-model="project.planPeriod"/></td>
+                </tr>
+
+                <tr>
+                    <th>工程区县：</th>
+                    <td><input type="text" v-model="project.projectCounty"/></td>
+                    <th>投资单位：</th>
+                    <td><input type="text" v-model="project.investmentUnit"/></td>
+                    <th>法定代表人：</th>
+                    <td><input type="text" v-model="project.legalRepresentative"/></td>
+                </tr>
+                <tr>
+                    <th>运输费用：</th>
+                    <td><input type="text" v-model="project.transportCost" /></td>
+                    <th>监理单位：</th>
+                    <td><input type="text" v-model="project.supervisorsUnit"/></td>
+                    <th>联系人：</th>
+                    <td><input type="text" v-model="project.liaisonPerson" readOnly=true/></td>
+                </tr>
+
+                <tr>
+                    <th>运输距离：</th>
+                    <td><input type="text" v-model="project.transportDistance"/></td>
+                    <th>施工地点：</th>
+                    <td><input type="text" v-model="project.constructionPlace" readOnly=true/></td>
+                    <th>联系电话：</th>
+                    <td><input type="text" v-model="project.telephone" readOnly=true/></td>
+
+                </tr>
+                <tr>
+                    <th>混凝土总量：</th>
+                    <td><input type="text" v-model="project.concreteQuantity" readOnly=true/></td>
+                    <th>供应企业：</th>
+                    <td colspan="3"><input v-model="project.supplier" /></td>
+                </tr>
+                <tr>
+                    <th>技术要求：</th>
+                    <td colspan="5"><input v-model="project.technicalRequirement" readOnly=true /></td>
+                </tr>
+
+            </table>
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="保存"/>
+                &nbsp;&nbsp;<input id="saveAndSubmit" type="button" class="btn btn-primary" @click="saveAndSubmit" value="保存并提交"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+
+
+
+        </form>
+    </div>
+
+</div>
+
+
+<script src="${request.contextPath}/js/modules/produce/project.js"></script>
