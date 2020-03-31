@@ -1,54 +1,54 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: baseURL + 'produce/contract/queryForPage',
+        url: baseURL + 'produce/recipe/queryForPage',
         datatype: "json",
         colModel: [
             {label: 'ID', name: 'id', index: "id", width: 45, hidden: true, key: true},
             {
                 label: '状态', name: 'status', width: 50, formatter: function (value, options, row) {
                     return value === 0 ?
-                        '<span class="label label-info">草稿</span>' :
-                        '<span class="label label-success">提交</span>';
+                        '<span class="label label-info">启用</span>' :
+                        '<span class="label label-success">禁用</span>';
                 }
             },
-            {label: '状态', name: 'status', index: "status",hidden: true,width: 45},
-            {label: '合同编号', name: 'contractCode', index: "contractCode", width: 120},
-            {label: '工程名称', name: 'projectName',index:'projectName', width: 200},
-            {label: '客户ID', name: 'customerId',index:'customerId',hidden:true, width: 200},
-            {label: '客户名称', name: 'customerName',index:'customerName', width: 200},
-            {label: '站点ID', name: 'stationId',index:'stationId',hidden:true, width: 75},
-            {label: '站点名称', name: 'stationName',index:'stationName', width: 75},
-            {label: '施工单位', name: 'constructionUnit',index:'constructionUnit', width: 200},
-            {label: '核算单位', name: 'accountingUnit',index:'accountingUnit', width: 200},
-            {label: '合同类型', name: 'contractType',index:'contractType', width: 75},
-            {label: '计划数量', name: 'planQuantity', width: 75},
-            {label: '计划日期', name: 'planDate',index:'planDate', width: 75},
-            {label: '供货日期', name: 'deliveryDate',index:'deliveryDate', width: 75},
-            {label: '金额上限', name: 'maxAmount', width: 75},
-            {label: '结算方式', name: 'settlementMethod',index:'settlementMethod', width: 75},
-            {label: '合同负责人', name: 'contractResponsiblePerson', index:'contractResponsiblePerson', width: 75},
-            {label: '施工地点', name: 'constructionPlace', index:'constructionPlace', width: 200},
-            {label: '签订日期', name: 'signDate', index:'signDate', width: 75},
-            {label: '联系人', name: 'liaisonPerson', index:'liaisonPerson', width: 75},
-            {label: '联系电话', name: 'telephone', index:'telephone', width: 75},
-            {label: '浇筑方式', name: 'pourMethod', index:'pourMethod', width: 75},
-            {label: '浇筑部位', name: 'pourPart', index:'pourPart', width: 75},
-            {label: '强度等级C', name: 'intensityLevel', index:'intensityLevel', width: 75},
-            {label: '抗渗等级P', name: 'impermeabilityLevel', index:'impermeabilityLevel', width: 75},
-            {label: '抗冻等级F', name: 'frostResistanceLevel', index:'frostResistanceLevel', width: 75},
-            {label: '抗折等级Z', name: 'bendLevel', index:'bendLevel', width: 75},
-            {label: '防腐等级P', name: 'anticorrosiveLevel', index:'anticorrosiveLevel', width: 75},
-            {label: '技术要求', name: 'technicalRequirement', index:'technicalRequirement', width: 150},
-            {label: '其他要求', name: 'otherRequirement', index:'otherRequirement', width: 150},
-            {label: '坍落度', name: 'slump', index:'slump', width: 75},
-            {label: '混凝土量(方)', name: 'concreteQuantity', index:'concreteQuantity', width: 75},
-            {label: '产品规格', name: 'productSpec', index:'productSpec', width: 75},
-            {label: '材料种类', name: 'materialType', index:'materialType', width: 75},
-            {label: '石子种类', name: 'stoneType', index:'stoneType', width: 75},
-            {label: '砂子种类', name: 'sandType', index:'sandType', width: 75},
-            {label: '石子粒径', name: 'stoneDiameter', index:'stoneDiameter', width: 75},
-            {label: '水泥品种', name: 'cementVariety', index:'cementVariety', width: 75},
-            {label: '水泥标号', name: 'cementLable', index:'cementLable', width: 75}
+            {label: '状态', name: 'status', index: "status", width: 120,hidden: true},
+            {label: '配比编号', name: 'recipeCode', index: "recipeCode", width: 120},
+            {label: '配比名称', name: 'recipeName',index:'recipeName', width: 200},
+            {
+                label: '是否导入', name: 'importFlag', index: "importFlag", width: 100, formatter: function (value, options, row) {
+                    return value === 1 ?
+                        '<span class="label label-info">导入</span>' :
+                        '<span class="label label-success">未导入</span>';
+                }
+            },
+            {label: '是否导入', name: 'importFlag', index: "importFlag", width: 75,hidden: true},
+            {label: '强度等级', name: 'intensityLevel',index:'intensityLevel', width: 100},
+            {label: '水胶比', name: 'waterBinderRatio',index:'waterBinderRatio', width: 100},
+            {label: '砂率', name: 'sandRate',index:'sandRate', width: 100},
+            {label: '坍落度', name: 'slump',index:'slump', width: 100},
+            {label: '水泥1', name: 'cement1',index:'cement1', width: 100},
+            {label: '水泥2', name: 'cement2',index:'cement2', width: 100},
+            {label: '水泥3', name: 'cement3',index:'cement3', width: 100},
+            {label: '砂子1', name: 'sand1',index:'sand1', width: 100},
+            {label: '砂子2', name: 'sand2',index:'sand2', width: 100},
+            {label: '砂子31', name: 'sand3',index:'sand3', width: 100},
+            {label: '大石量', name: 'bigStone',index:'bigStone', width: 100},
+            {label: '中石量', name: 'middleStone',index:'middleStone', width: 100},
+            {label: '小石量', name: 'smallStone',index:'smallStone', width: 100},
+            {label: '粉煤灰', name: 'flyash',index:'flyash', width: 100},
+            {label: '矿粉', name: 'minePowder',index:'minePowder', width: 100},
+            {label: '外加剂1', name: 'additive1',index:'additive1', width: 100},
+            {label: '外加剂2', name: 'additive2',index:'additive2', width: 100},
+            {label: '外加剂3', name: 'additive3',index:'additive3', width: 100},
+            {label: '外加剂4', name: 'additive4',index:'additive4', width: 100},
+            {label: '水', name: 'water',index:'water', width: 100},
+            {label: '其他1', name: 'other1',index:'other1', width: 100},
+            {label: '其他2', name: 'other2',index:'other2', width: 100},
+            {label: '抗渗等级', name: 'impermeabilityLevel',index:'impermeabilityLevel', width: 100},
+            {label: '抗折等级', name: 'bendLevel',index:'bendLevel', width: 100},
+            {label: '砂等级', name: 'sandLevel',index:'sandLevel', width: 100},
+            {label: '石子最大粒径', name: 'stoneDiameter',index:'stoneDiameter', width: 100},
+            {label: '石子最大粒径', name: 'apparentDensity',index:'apparentDensity', width: 100}
 
         ],
         viewrecords: true,
@@ -81,9 +81,9 @@ var vm = new Vue({
     el: '#app',
     data: {
         queryParam: {
-            contractCode: ""
+            recipeCode: ""
         },
-        contract:{},
+        recipe:{},
         stationList:[],
         selected:"",
         showList: true,
@@ -94,109 +94,46 @@ var vm = new Vue({
             vm.reload();
         },
         add: function () {
-            //$("#contractCode").attr("readOnly",true);
-            $("#saveAndSubmit").show();
             vm.title = "新增";
-            vm.contract = {id:null,stationId:vm.stationList[0].id};
-            vm.selected = vm.stationList[0].id;
+            vm.recipe = {id:null};
+            vm.recipe.status = 0;
             vm.showList = false;
-        },
-        getStation: function(){
-            //加载搅拌站点数据
-            $.get(baseURL + "base/station/queryForList", function(result){
-                vm.stationList = result.data;
-                vm.selected = vm.stationList[0].id;
-                vm.contract.stationId = vm.stationList[0].id;
-            })
-        },
-        changeSelect: function(event){
-            vm.contract.stationId = event.target.value;
-
-            //var station =  document.getElementById('station');
-            //vm.contract.id = station.options[station.selectedIndex].value;
-            //var text = station.options[station.selectedIndex].text;
         },
         update: function () {
-            vm.contract = getSelectedOneRow();
-            if (isBlank(this.contract.id)) {
+            vm.recipe = getSelectedOneRow();
+            if (isBlank(this.recipe.id)) {
                 return;
             }
-            if (vm.contract.status == 1) {
-                alert("已提交的数据不能修改！");
-                return;
-            }
-            $("#saveAndSubmit").hide();
-            vm.selected = vm.contract.stationId;
             vm.showList = false;
-            //vm.title = "修改";
-        },
-        saveAndSubmit: function(){
-            $.ajax({
-                type: "POST",
-                url: baseURL + "produce/contract/saveAndSubmit",
-                contentType: "application/json",
-                data: JSON.stringify(vm.contract),
-                success: function (result) {
-                    if (result.code === 200) {
-                        alert(result.msg, function () {
-                            vm.reload();
-                        });
-                    }
-                }
-            });
+            vm.title = "修改";
         },
         saveOrUpdate: function () {
-            var url = vm.contract.id == null ? "produce/contract/save" : "produce/contract/update";
+            var url = vm.recipe.id == null ? "produce/recipe/save" : "produce/recipe/update";
             $.ajax({
                 type: "POST",
                 url: baseURL + url,
                 contentType: "application/json",
-                data: JSON.stringify(vm.contract),
+                data: JSON.stringify(vm.recipe),
                 success: function (result) {
                     if (result.code === 200) {
                         alert(result.msg, function () {
                             vm.reload();
                         });
-                    }
-                }
-            });
-        },
-        submit: function(){
-            var contractIds = getSelectedRows();
-            if (contractIds == null) {
-                return;
-            }
-
-            $.ajax({
-                type: "POST",
-                url: baseURL + "produce/contract/submit",
-                contentType: "application/json",
-                data: JSON.stringify(contractIds),
-                success: function (result) {
-                    if (result.code === 200) {
-                        if(result.data > 0 ){
-                            alert(result.msg, function () {
-                                vm.reload();
-                            });
-                        }else{
-                            alert(result.data);
-                        }
-
                     }
                 }
             });
         },
         del: function(){
-            var contractIds = getSelectedRows();
-            if (contractIds == null) {
+            var recipeIds = getSelectedRows();
+            if (recipeIds == null) {
                 return;
             }
             confirm('确定要删除选中的记录？', function () {
                 $.ajax({
                     type: "POST",
-                    url: baseURL + "produce/contract/delete",
+                    url: baseURL + "produce/recipe/delete",
                     contentType: "application/json",
-                    data: JSON.stringify(contractIds),
+                    data: JSON.stringify(recipeIds),
                     success: function (result) {
                         if (result.code === 200) {
                             if(result.data > 0 ){
@@ -212,17 +149,16 @@ var vm = new Vue({
                 });
             });
         },
-        importProject: function(){
-            var rowDatas = getSelectedRowDatas();
-            if (rowDatas == null && rowDatas.length > 0) {
+        importMixingPlant: function(){
+            var recipeIds = getSelectedRows();
+            if (recipeIds == null) {
                 return;
             }
-
             $.ajax({
                 type: "POST",
-                url: baseURL + "produce/contract/importProject",
+                url: baseURL + "produce/recipe/import",
                 contentType: "application/json",
-                data: JSON.stringify(rowDatas),
+                data: JSON.stringify(recipeIds),
                 success: function (result) {
                     if (result.code === 200) {
                         if(result.data > 0 ){
@@ -242,13 +178,13 @@ var vm = new Vue({
             vm.showList = true;
             var page = $("#jqGrid").jqGrid('getGridParam', 'page');
             $("#jqGrid").jqGrid('setGridParam', {
-                postData: {'contractCode': vm.queryParam.contractCode},
+                postData: {'recipeCode': vm.queryParam.recipeCode},
                 page: page
             }).trigger("reloadGrid");
         }
     },
     mounted:function(){
-        this.getStation();
+
     }
 
 
