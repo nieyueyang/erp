@@ -22,8 +22,6 @@ public class ContractService {
 
     @Autowired
     private ContractDao contractDao;
-    @Autowired
-    private ProjectService projectService;
 
     public PageInfo<ContractEntity> queryForPage(ContractEntity contractEntity){
         String orderby = "";

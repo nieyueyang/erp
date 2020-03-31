@@ -3,7 +3,8 @@ package com.tan.erp.web.produce.entity;
 import com.tan.erp.mybatis.annotation.Table;
 import com.tan.erp.mybatis.annotation.TargetColumn;
 import com.tan.erp.mybatis.annotation.TargetTable;
-
+import com.tan.erp.web.base.entity.BaseEntity;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -15,14 +16,14 @@ import java.time.Instant;
  */
 @Table("pp_recipe")
 @TargetTable("recipe")
-public class RecipeEntity {
+public class RecipeEntity extends BaseEntity implements Serializable {
     @TargetColumn("RecipeID")
     private Long id;
     private String recipeCode;
     @TargetColumn("RecipeName")
     private String recipeName;
     @TargetColumn("intensityLevel")
-    private Integer intensityLevel;
+    private String intensityLevel;
     @TargetColumn("sjb")
     private String waterBinderRatio;
     @TargetColumn("sl")
@@ -66,19 +67,21 @@ public class RecipeEntity {
     @TargetColumn("RecipeOth2")
     private String other2;
     @TargetColumn("ksd")
-    private Integer ImpermeabilityLevel;
+    private String ImpermeabilityLevel;
     @TargetColumn("kzd")
-    private Integer bendLevel;
+    private String bendLevel;
     @TargetColumn("sljdj")
-    private Integer sandLevel;
+    private String sandLevel;
     @TargetColumn("sszdlj")
     private String stoneDiameter;
     @TargetColumn("bgmd")
     private String apparentDensity;
+    private Integer importFlag;
+    private Integer status;
+    private Integer deleteFlag;
     private String createUser;
     private String createUserName;
-    @TargetColumn("create_time")
-    private Timestamp createTime;
+    private Instant createTime;
     private String modifyUser;
     private Instant modifyTime;
 
@@ -107,11 +110,11 @@ public class RecipeEntity {
         this.recipeName = recipeName;
     }
 
-    public Integer getIntensityLevel() {
+    public String getIntensityLevel() {
         return intensityLevel;
     }
 
-    public void setIntensityLevel(Integer intensityLevel) {
+    public void setIntensityLevel(String intensityLevel) {
         this.intensityLevel = intensityLevel;
     }
 
@@ -283,27 +286,27 @@ public class RecipeEntity {
         this.other2 = other2;
     }
 
-    public Integer getImpermeabilityLevel() {
+    public String getImpermeabilityLevel() {
         return ImpermeabilityLevel;
     }
 
-    public void setImpermeabilityLevel(Integer impermeabilityLevel) {
+    public void setImpermeabilityLevel(String impermeabilityLevel) {
         ImpermeabilityLevel = impermeabilityLevel;
     }
 
-    public Integer getBendLevel() {
+    public String getBendLevel() {
         return bendLevel;
     }
 
-    public void setBendLevel(Integer bendLevel) {
+    public void setBendLevel(String bendLevel) {
         this.bendLevel = bendLevel;
     }
 
-    public Integer getSandLevel() {
+    public String getSandLevel() {
         return sandLevel;
     }
 
-    public void setSandLevel(Integer sandLevel) {
+    public void setSandLevel(String sandLevel) {
         this.sandLevel = sandLevel;
     }
 
@@ -323,6 +326,30 @@ public class RecipeEntity {
         this.apparentDensity = apparentDensity;
     }
 
+    public Integer getImportFlag() {
+        return importFlag;
+    }
+
+    public void setImportFlag(Integer importFlag) {
+        this.importFlag = importFlag;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
     public String getCreateUser() {
         return createUser;
     }
@@ -339,11 +366,11 @@ public class RecipeEntity {
         this.createUserName = createUserName;
     }
 
-    public Timestamp getCreateTime() {
+    public Instant getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Instant createTime) {
         this.createTime = createTime;
     }
 
@@ -362,4 +389,5 @@ public class RecipeEntity {
     public void setModifyTime(Instant modifyTime) {
         this.modifyTime = modifyTime;
     }
+
 }
