@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recipe">
+    <resultMap id="BaseResultMap" type="com.tan.erp.web.produce.entity.RecipeEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="recipe_code" jdbcType="VARCHAR" property="recipeCode" />
+        <result column="recipe_name" jdbcType="VARCHAR" property="recipeName" />
+        <result column="intensity_level" jdbcType="VARCHAR" property="intensityLevel" />
+        <result column="water_binder_ratio" jdbcType="VARCHAR" property="waterBinderRatio" />
+        <result column="sand_rate" jdbcType="VARCHAR" property="sandRate" />
+        <result column="slump" jdbcType="VARCHAR" property="slump" />
+        <result column="cement1" jdbcType="VARCHAR" property="cement1" />
+        <result column="cement2" jdbcType="VARCHAR" property="cement2" />
+        <result column="cement3" jdbcType="VARCHAR" property="cement3" />
+        <result column="sand1" jdbcType="VARCHAR" property="sand1" />
+        <result column="sand2" jdbcType="VARCHAR" property="sand2" />
+        <result column="sand3" jdbcType="VARCHAR" property="sand3" />
+        <result column="big_stone" jdbcType="VARCHAR" property="bigStone" />
+        <result column="middle_stone" jdbcType="VARCHAR" property="middleStone" />
+        <result column="small_stone" jdbcType="VARCHAR" property="smallStone" />
+        <result column="flyash" jdbcType="VARCHAR" property="flyash" />
+        <result column="mine_powder" jdbcType="VARCHAR" property="minePowder" />
+        <result column="additive1" jdbcType="VARCHAR" property="additive1" />
+        <result column="additive2" jdbcType="VARCHAR" property="additive2" />
+        <result column="additive3" jdbcType="VARCHAR" property="additive3" />
+        <result column="additive4" jdbcType="VARCHAR" property="additive4" />
+        <result column="water" jdbcType="VARCHAR" property="water" />
+        <result column="other1" jdbcType="VARCHAR" property="other1" />
+        <result column="other2" jdbcType="VARCHAR" property="other2" />
+        <result column="Impermeability_level" jdbcType="VARCHAR" property="impermeabilityLevel" />
+        <result column="bend_level" jdbcType="VARCHAR" property="bendLevel" />
+        <result column="sand_level" jdbcType="VARCHAR" property="sandLevel" />
+        <result column="stone_diameter" jdbcType="VARCHAR" property="stoneDiameter" />
+        <result column="apparent_density" jdbcType="VARCHAR" property="apparentDensity" />
+        <result column="import_flag" jdbcType="INTEGER" property="importFlag" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+        <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+        <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, recipe_code, recipe_name, intensity_level, water_binder_ratio, sand_rate, slump,
+        cement1, cement2, cement3, sand1, sand2, sand3, big_stone, middle_stone, small_stone,
+        flyash, mine_powder, additive1, additive2, additive3, additive4, water, other1, other2,
+        impermeability_level, bend_level, sand_level, stone_diameter, apparent_density,status,delete_flag,import_flag,
+        create_user,create_user_name, create_time, modify_user, modify_time
+    </sql>
+
+    <select id="selectForList" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from pp_recipe
+        <include refid="where" />
+
+        <if test="sidx != null and sidx !=''">
+            order by #{sidx} #{sord}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from pp_recipe
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id ="selectForMaxCode" resultType="java.lang.Integer">
+        select max(right(recipe_code, 4)) from  pp_recipe;
+    </select>
+
+    <select id ="selectForIds" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from pp_recipe where status = 0 and delete_flag =0
+        <if test="list.size() > 0">
+            and id in
+            <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <insert id="insert" >
+        insert into pp_recipe (id, recipe_code, recipe_name,
+        intensity_level, water_binder_ratio, sand_rate,
+        slump, cement1, cement2,
+        cement3, sand1, sand2,
+        sand3, big_stone, middle_stone,
+        small_stone, flyash, mine_powder,
+        additive1, additive2, additive3,
+        additive4, water, other1,
+        other2, Impermeability_level, bend_level,
+        sand_level, stone_diameter, apparent_density,
+        status,import_flag,delete_flag,
+        create_user, create_user_name, create_time)
+        values (#{id,jdbcType=BIGINT}, #{recipeCode,jdbcType=VARCHAR}, #{recipeName,jdbcType=VARCHAR},
+        #{intensityLevel,jdbcType=VARCHAR}, #{waterBinderRatio,jdbcType=VARCHAR}, #{sandRate,jdbcType=VARCHAR},
+        #{slump,jdbcType=VARCHAR}, #{cement1,jdbcType=VARCHAR}, #{cement2,jdbcType=VARCHAR},
+        #{cement3,jdbcType=VARCHAR}, #{sand1,jdbcType=VARCHAR}, #{sand2,jdbcType=VARCHAR},
+        #{sand3,jdbcType=VARCHAR}, #{bigStone,jdbcType=VARCHAR}, #{middleStone,jdbcType=VARCHAR},
+        #{smallStone,jdbcType=VARCHAR}, #{flyash,jdbcType=VARCHAR}, #{minePowder,jdbcType=VARCHAR},
+        #{additive1,jdbcType=VARCHAR}, #{additive2,jdbcType=VARCHAR}, #{additive3,jdbcType=VARCHAR},
+        #{additive4,jdbcType=VARCHAR}, #{water,jdbcType=VARCHAR}, #{other1,jdbcType=VARCHAR},
+        #{other2,jdbcType=VARCHAR}, #{impermeabilityLevel,jdbcType=VARCHAR}, #{bendLevel,jdbcType=VARCHAR},
+        #{sandLevel,jdbcType=VARCHAR}, #{stoneDiameter,jdbcType=VARCHAR}, #{apparentDensity,jdbcType=VARCHAR},
+        #{status,jdbcType=INTEGER}, #{importFlag,jdbcType=INTEGER},#{deleteFlag,jdbcType=INTEGER},
+        #{createUser,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateByPrimaryKey" >
+        update pp_recipe
+        set recipe_name = #{recipeName,jdbcType=VARCHAR},
+        intensity_level = #{intensityLevel,jdbcType=VARCHAR},
+        water_binder_ratio = #{waterBinderRatio,jdbcType=VARCHAR},
+        sand_rate = #{sandRate,jdbcType=VARCHAR},
+        slump = #{slump,jdbcType=VARCHAR},
+        cement1 = #{cement1,jdbcType=VARCHAR},
+        cement2 = #{cement2,jdbcType=VARCHAR},
+        cement3 = #{cement3,jdbcType=VARCHAR},
+        sand1 = #{sand1,jdbcType=VARCHAR},
+        sand2 = #{sand2,jdbcType=VARCHAR},
+        sand3 = #{sand3,jdbcType=VARCHAR},
+        big_stone = #{bigStone,jdbcType=VARCHAR},
+        middle_stone = #{middleStone,jdbcType=VARCHAR},
+        small_stone = #{smallStone,jdbcType=VARCHAR},
+        flyash = #{flyash,jdbcType=VARCHAR},
+        mine_powder = #{minePowder,jdbcType=VARCHAR},
+        additive1 = #{additive1,jdbcType=VARCHAR},
+        additive2 = #{additive2,jdbcType=VARCHAR},
+        additive3 = #{additive3,jdbcType=VARCHAR},
+        additive4 = #{additive4,jdbcType=VARCHAR},
+        water = #{water,jdbcType=VARCHAR},
+        other1 = #{other1,jdbcType=VARCHAR},
+        other2 = #{other2,jdbcType=VARCHAR},
+        Impermeability_level = #{impermeabilityLevel,jdbcType=VARCHAR},
+        bend_level = #{bendLevel,jdbcType=VARCHAR},
+        sand_level = #{sandLevel,jdbcType=VARCHAR},
+        stone_diameter = #{stoneDiameter,jdbcType=VARCHAR},
+        apparent_density = #{apparentDensity,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateForImport"  parameterType="java.lang.Long">
+        update pp_recipe set import_flag = 1 where id = #{id}
+    </update>
+
+    <update id="deleteByPrimaryKey" >
+        <foreach collection="list" item="item" index="index" separator=";">
+            update pp_recipe set delete_flag = 1 where id = #{item}
+        </foreach>
+    </update>
+
+    <sql id="where">
+        <where>
+            <if test="id !=null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="recipeCode !=null and recipeCode != ''">
+                and recipe_code = #{recipeCode}
+            </if>
+            <if test="recipeName !=null and recipeName != ''">
+                and recipe_name like concat('%', #{recipeName}, '%')
+            </if>
+            <if test="status !=null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="deleteFlag !=null ">
+                and delete_flag = #{deleteFlag}
+            </if>
+
+        </where>
+    </sql>
+
+
+
+
+
+</mapper>

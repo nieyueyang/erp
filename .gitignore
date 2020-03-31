@@ -1,1 +1,16 @@
 # Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+erp-web/target
+erp-redis/target
+erp-mybatis/target
+erp-common/target
+erp-generator/target
+erp-generator/src/main/java/*
+out
+gen
+
